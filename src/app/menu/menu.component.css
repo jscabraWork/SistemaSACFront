@@ -1,0 +1,11 @@
+.navbar{
+    
+    background-color: #00171F;
+}
+.nav-link, .navbar-brand{
+    color: #FFFFF2;
+
+}
+.navbar-brand{
+    font-weight: bold;
+}

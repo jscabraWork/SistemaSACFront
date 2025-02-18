@@ -1,0 +1,27 @@
+<div class="row">
+
+    <div class="form col-12">
+        <h1>Contactanos</h1>
+        <form class="formulario">
+            <div class="form-group">
+                <label for="tipo">Tipo de Solicitud</label>
+                <select class="form-control" name="tipo" id="tipo" [(ngModel)]="solicitud.so_ts_id">
+                    <option value="-1">Selecciona tipo de Solicitud</option>
+                    <option value="1">Solicitud</option>
+                    <option value="2">Petición</option>
+                    <option value="3">Queja</option>
+                    <option value="4">Reclamo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea class="form-control" name="descripcion" placeholder="Descripción" id="descripcion" [(ngModel)]="solicitud.so_descripcion"></textarea>
+            </div>
+            <div class="form-group">
+                <button (click)="crearSolicitud()">Enviar</button>
+            </div>
+            
+        </form>
+    </div>
+
+</div>
