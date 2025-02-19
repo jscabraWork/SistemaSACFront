@@ -12,5 +12,5 @@ import { MenuComponent } from './menu/menu.component';
   standalone:true
 })
 export class AppComponent {
-  title = 'sacSistemFront';
+  title = 'Sistema SAC';
 }

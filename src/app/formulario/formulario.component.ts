@@ -7,7 +7,8 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css',
-  imports:[FormsModule ]
+  imports:[FormsModule ],
+  standalone:true
 })
 export class FormularioComponent implements OnInit{
 
@@ -23,11 +24,11 @@ export class FormularioComponent implements OnInit{
 
   crearSolicitud(){
     this.service.crearSolicitud(this.solicitud).subscribe({next:response=>{
-      alert(`Solicitud ${response.numero} creada con exito`);
+      alert(`Solicitud ${response.numero} creada con éxito`);
     },
     error:error=>{
       error
-      alert("Sucedio un error al crear la solicitud")
+      alert("Sucedió un error al crear la solicitud")
     }
   });
   }
