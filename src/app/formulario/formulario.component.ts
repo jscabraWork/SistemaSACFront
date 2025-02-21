@@ -23,11 +23,12 @@ export class FormularioComponent implements OnInit{
   }
 
   crearSolicitud(){
+    console.log(this.solicitud)
     this.service.crearSolicitud(this.solicitud).subscribe({next:response=>{
       alert(`Solicitud ${response.numero} creada con éxito`);
     },
     error:error=>{
-      error
+      console.log(error)
       alert("Sucedió un error al crear la solicitud")
     }
   });
