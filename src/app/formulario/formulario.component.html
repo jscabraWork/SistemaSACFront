@@ -5,7 +5,7 @@
         <form class="formulario">
             <div class="form-group">
                 <label for="tipo">Tipo de Solicitud</label>
-                <select class="form-control" name="tipo" id="tipo" [(ngModel)]="solicitud.so_ts_id">
+                <select class="form-control" name="tipo" id="tipo" [(ngModel)]="solicitud.so_ts_id" required="required">
                     <option value="-1">Selecciona tipo de Solicitud</option>
                     <option value="1">Solicitud</option>
                     <option value="2">Petición</option>
@@ -14,8 +14,16 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="email">Correo Electronico</label>
+                <input class="form-control" type="text" placeholder="Ingresa tu correo" name="email" [(ngModel)]="solicitud.usuarios.us_correo" required="required">
+            </div>
+            <div class="form-group">
                 <label for="descripcion">Descripción</label>
-                <textarea class="form-control" name="descripcion" placeholder="Descripción" id="descripcion" [(ngModel)]="solicitud.so_descripcion"></textarea>
+                <textarea class="form-control" name="descripcion" placeholder="Descripción" id="descripcion" [(ngModel)]="solicitud.so_descripcion" required="required"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="archivo">Documentos necesarios (Opcional)</label>
+                <input type="file" class="form-control mt-2">
             </div>
             <div class="form-group">
                 <button (click)="crearSolicitud()">Enviar</button>

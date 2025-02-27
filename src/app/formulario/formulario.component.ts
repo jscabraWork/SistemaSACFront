@@ -25,7 +25,8 @@ export class FormularioComponent implements OnInit{
   crearSolicitud(){
     console.log(this.solicitud)
     this.service.crearSolicitud(this.solicitud).subscribe({next:response=>{
-      alert(`Solicitud ${response.numero} creada con éxito`);
+      console.log(response)
+      alert(`Solicitud ${response.body.so_numero_solicitud} creada con éxito`);
     },
     error:error=>{
       console.log(error)

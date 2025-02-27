@@ -1,0 +1,61 @@
+
+<div class="overlay" *ngIf="buscando">
+    <div class="spinner"></div>
+  </div>
+  
+<div class="container-fluid mt-3">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <label for="solicitud" class="form-label">Consultar solicitud</label>
+            
+            <div class="form-group">
+                <select name="tipoBusqueda" id="tipoB" [(ngModel)]="tipoBusqueda" class="form-control" (change)="reiniciar()">
+                    <option value="-1">Seleccione una opción</option>
+                    <option value="0">Busqueda por Numero de radicado</option>
+                    <option value="1">Busqueda por Correo</option>
+                </select>    
+            
+            </div>
+
+                <div class="form-group  mt-3" *ngIf="tipoBusqueda==0">
+                    <input type="text" class="form-control" id="solicitud" placeholder="Ingrese tu numero de solicitud" [(ngModel)]="noRadico">
+                </div>
+                <div class="form-group mt-3" *ngIf="tipoBusqueda==1">
+                    <input type="text" class="form-control" id="correoBusqueda" placeholder="Ingrese el correo" [(ngModel)]="correo">
+                </div>
+                <div class="form-group" *ngIf="tipoBusqueda!=-1">
+                    <button class="mt-3" type="button" (click)="buscarSolicitud()">Buscar</button>
+                </div>
+                
+            </div>
+        
+
+            <div class="col-12 mt-2 " *ngFor="let solicitud of solicitudes">
+                <h2>
+                    Solicitud No {{solicitud.so_id}}
+                </h2>
+                <div class="infoSolicitud">
+                    
+                    <p>
+                        Numero Radico: {{solicitud.so_numero_solicitud}}
+                    </p>
+                    <p>
+                        Fecha de radicación: {{solicitud.so_fecha_creacion | date:'medium'}}
+                    </p>
+                    <p>
+                        Estado: {{solicitud.estados_Solicitudes.es_nombre_estado}}
+                    </p>
+                    <p>
+                        Correo: {{solicitud.usuarios.us_correo}}
+                    </p>
+                    <p>
+                        Tipo de solicitud: {{solicitud.tipos_Solicitudes.ts_nombre}}
+                    </p>
+                    <p>
+                        Mensaje: {{solicitud.so_descripcion}}
+                    </p>
+                </div>
+                
+            </div>
+    </div>
+</div>
