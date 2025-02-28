@@ -1,8 +1,8 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient,  HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Solicitud } from '../models/solicitud.model';
 import { API_URL } from '../app-constants';
 import { Observable } from 'rxjs';
+import { SolicitudCreacion } from '../models/creaciones.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,16 @@ export class SolicitudesService {
   constructor(private http:HttpClient) { }
 
 
-  crearSolicitud(solicitud: Solicitud): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  crearSolicitud(solicitud: SolicitudCreacion, files?:FileList): Observable<any> {
 
-    return this.http.post<any>(API_URL, solicitud, { headers, observe: 'response' })
+    let formData = new FormData();
+    formData.append('solicitudReqText', JSON.stringify(solicitud));
+   // formData.append('file',files[0]);
+   if(files){
+    formData.append('file',files[0]);
+   }
+
+    return this.http.post<any>(API_URL, formData)
   }
 
 

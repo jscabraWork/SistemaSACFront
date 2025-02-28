@@ -1,11 +1,16 @@
+<div class="overlay" *ngIf="creando">
+    <div class="spinner"></div>
+  </div>
+  
 <div class="row">
 
     <div class="form col-12">
-        <h1>Contactanos</h1>
-        <form class="formulario">
-            <div class="form-group">
-                <label for="tipo">Tipo de Solicitud</label>
-                <select class="form-control" name="tipo" id="tipo" [(ngModel)]="solicitud.so_ts_id" required="required">
+        <h1 class="titulos-organizador">Contactanos</h1>
+        <hr class="linea-naranja  ml-20" />
+        <form class="formulario form-mailing">
+            <div >
+                <label for="nombre">Tipo de Solicitud </label>
+                <select class="selects"  name="tipo" id="tipo" [(ngModel)]="solicitud.so_ts_id" required="required">
                     <option value="-1">Selecciona tipo de Solicitud</option>
                     <option value="1">Solicitud</option>
                     <option value="2">Petición</option>
@@ -13,19 +18,60 @@
                     <option value="4">Reclamo</option>
                 </select>
             </div>
-            <div class="form-group">
+
+            <div >
+                <label for="nombre">Nombre </label>
+                <input class="mt-0 selects persona"  type="text" placeholder="Ingresa tu nombre" name="nombre" [(ngModel)]="solicitud.usuario.us_nombre" required="required">
+            </div>
+            <div >
+                <label for="apellido">Apellidos</label>
+                <input class="mt-0 selects persona"  type="text" placeholder="Ingresa tus apellidos" name="apellido" [(ngModel)]="solicitud.usuario.us_apellido" required="required">
+            </div>
+            <div >
                 <label for="email">Correo Electronico</label>
-                <input class="form-control" type="text" placeholder="Ingresa tu correo" name="email" [(ngModel)]="solicitud.usuarios.us_correo" required="required">
+                <input class="mt-0 selects mail"  type="text"  placeholder="Ingresa tu correo" name="email" [(ngModel)]="solicitud.usuario.us_correo" required="required">
             </div>
-            <div class="form-group">
+            <div >
+                <label for="tel">Telefono</label>
+                <input class="mt-0 selects telefono"  type="text" placeholder="Ingresa tu telefono" name="tel" [(ngModel)]="solicitud.usuario.us_telefono" required="required">
+            </div>
+            <div >
+                <label for="tipo">Tipo de Documento</label>
+                <select class="selects"  name="tipoDoc" id="tipoDoc" [(ngModel)]="solicitud.usuario.us_ti_id" required="required">
+                    <option value="-1">Selecciona tipo de documento</option>
+                    <option value="1">CC</option>
+                    <option value="2">CE</option>
+                    <option value="3">TI</option>
+                    <option value="4">Pasaporte</option>
+
+                </select>
+            </div>
+            <div >
+                <label for="cc">Numero Documento</label>
+                <input class="mt-0 selects documento"  type="text" placeholder="Ingresa tu numero de documento" name="cc" [(ngModel)]="solicitud.usuario.us_identificacion" required="required">
+            </div>
+            <div >
                 <label for="descripcion">Descripción</label>
-                <textarea class="form-control" name="descripcion" placeholder="Descripción" id="descripcion" [(ngModel)]="solicitud.so_descripcion" required="required"></textarea>
+                <textarea  name="descripcion" placeholder="Descripción" id="descripcion" [(ngModel)]="solicitud.so_descripcion" required="required"></textarea>
             </div>
-            <div class="form-group">
-                <label for="archivo">Documentos necesarios (Opcional)</label>
-                <input type="file" class="form-control mt-2">
-            </div>
-            <div class="form-group">
+
+            <div class="contenedor-imagen " (click)="fileInput.click()">
+                <div>
+                  <div> <img src="assets/documento.png" class="w-76" alt=""> </div>
+                  <div class="titulo-imagen">Documento</div>
+                  <div class="parrafo-imagen">archivo</div>
+                </div>
+                <input class="mt-0 selects reloj" type="file" #fileInput style="display: none" (change)="selectFiles($event)" />
+    
+              </div>
+
+              <div *ngIf="selectedFiles">
+                <h2 class="titulos-organizador">Documento</h2>
+                <div *ngFor="let src of imagesSrc" class="lista-archivos">
+                  <p class="ml-1">{{src}}</p>
+                </div>
+              </div>
+            <div >
                 <button (click)="crearSolicitud()">Enviar</button>
             </div>
             

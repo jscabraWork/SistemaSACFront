@@ -19,14 +19,16 @@ export class ConsultarSolicitudComponent implements OnInit{
   tipoBusqueda:number
   buscando:boolean
 
+
   constructor(private solicitudService:SolicitudesService){
 
   }
 
   ngOnInit(): void {
     this.reiniciar();
-    this.tipoBusqueda=-1
-    this.buscando=false
+    this.tipoBusqueda=-1;
+    this.buscando=false;
+
   }
 
   reiniciar(){

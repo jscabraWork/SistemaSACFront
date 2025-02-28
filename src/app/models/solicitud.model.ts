@@ -28,7 +28,7 @@ export class EstadoSolicitud {
 
 export class Solicitud {
     so_id!: number;
-    so_numero_solicitud!: string;
+    so_numero_solicitud: string;
     so_ts_id!: number;
     so_descripcion!: string;
     so_fecha_creacion!: Date;
