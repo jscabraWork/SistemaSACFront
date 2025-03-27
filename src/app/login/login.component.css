@@ -1,0 +1,46 @@
+.ng-invalid:not(form){
+    border-left:2px solid black ;
+}
+.flex-centrado{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+.ng-valid:not(form){
+    border-left:2px solid black  ;
+}
+.fondoBlanco{
+    background-color: white;
+    padding: 20px;
+}
+
+p{
+    font-size: 18px;
+}
+
+.colorLetras{
+    color:#722B1D;
+}
+.botonLogin{
+    background-color: #00171F;
+    width: 100%;
+    color:white;
+}
+
+
+a{
+    cursor: pointer;
+}
+.contenedor-login{
+    width: 60%;
+}
+@media(max-width:870px){
+    .contenedor-login{
+        width: 80%;
+    }
+}
+@media(max-width:520px){
+    .contenedor-login{
+        width: 90%;
+    }
+}

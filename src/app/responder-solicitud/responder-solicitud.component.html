@@ -1,38 +1,30 @@
-<div class="overlay" *ngIf="buscando">
-    <div class="spinner"></div>
-</div>
+<div class="container">
 
-<div class="container-fluid mt-3">
-    <div class="row justify-content-center">
+    <div class="row">
+
         <div class="col-12">
-            <label for="solicitud" class="form-label">Consultar solicitud</label>
-            <form action="" class="form-mailing">
-                <div class="form-group">
-                    <select name="tipoBusqueda" class="selects" id="tipoB" name="tipoB" [(ngModel)]="tipoBusqueda"
-                        (change)="reiniciar()">
-                        <option value="-1">Seleccione una opción</option>
-                        <option value="0">Busqueda por Numero de radicado</option>
-                        <option value="1">Busqueda por Correo</option>
-                    </select>
-
-                </div>
-
-                <div class="form-group  mt-3" *ngIf="tipoBusqueda==0">
-                    <input type="text" class="selects documento" id="solicitud" name="solicitud"
-                        placeholder="Ingrese tu numero de solicitud" [(ngModel)]="noRadico">
-                </div>
-                <div class="form-group mt-3" *ngIf="tipoBusqueda==1">
-                    <input type="text" class="selects mail" id="correoBusqueda" name="correoBusqueda"
-                        placeholder="Ingrese el correo" [(ngModel)]="correo">
-                </div>
-                <div class="form-group" *ngIf="tipoBusqueda!=-1">
-                    <button class="mt-3" type="button" (click)="buscarSolicitud()">Buscar</button>
-                </div>
-            </form>
+            <h2>Selecciona el estado que deseas ver</h2>
+            <ul>
+                <li [ngClass]="{ 'li-select': idEstadoActual === 1 }" (click)="busquedaDeSolciitudes(1)">
+                    Radicado
+                </li>
+                <li [ngClass]="{ 'li-select': idEstadoActual === 2 }" (click)="busquedaDeSolciitudes(2)">
+                    En Proceso
+                </li>
+                <li [ngClass]="{ 'li-select': idEstadoActual === 3 }" (click)="busquedaDeSolciitudes(3)">
+                    Resuelto
+                </li>
+                <li [ngClass]="{ 'li-select': idEstadoActual === 4 }" (click)="busquedaDeSolciitudes(4)">
+                    En Revisión
+                </li>
+                <li [ngClass]="{ 'li-select': idEstadoActual === 5 }" (click)="busquedaDeSolciitudes(5)">
+                    Escalado
+                </li>
+            </ul>
         </div>
 
+        <div class="col-12 mt-2 " *ngFor="let solicitud of solicitudes; let i =index">
 
-        <div class="col-12 mt-2 " *ngFor="let solicitud of solicitudes">
 
 
             <div class="order-container">
@@ -48,7 +40,24 @@
                         <tr>
                             <th>Estado:</th>
                             <td [class]="'status-' + solicitud.estados_Solicitudes.es_id">
-                                {{solicitud.estados_Solicitudes.es_nombre_estado}}</td>
+                                {{solicitud.estados_Solicitudes.es_nombre_estado}}
+
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Cambiar Estado</th>
+                            <td>
+
+                                <select id="estado" [(ngModel)]="cambios[i].so_es_id" class="form-control">
+                                    <option *ngFor="let estado of estados" [value]="estado.es_id">
+                                        {{ estado.es_nombre_estado }}
+                                    </option>
+
+                                </select>
+
+                                <button class="mt-3" (click)="cambiarEstadoSolicitud(i)">Guardar</button>
+                            </td>
                         </tr>
                         <tr>
                             <th>Fecha:</th>
@@ -82,7 +91,13 @@
                             <th>Documento</th>
                             <td><a href="{{solicitud.so_url_image}}">Documento</a></td>
                         </tr>
-  
+                        <tr *ngIf="respuestas[i]!=null">
+                            <th>Responder</th>
+                            <td><input type="text" class="mt-2 mb-2" name="rta{{i}}"
+                                    [(ngModel)]="respuestas[i].so_respuesta">
+                                <button (click)="responderSolicitud(i)">Responder</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -91,4 +106,6 @@
 
 
         </div>
+
     </div>
+</div>

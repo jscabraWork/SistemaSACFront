@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor } from '@angular/common';
 import { SolicitudCreacion } from '../models/creaciones.model';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { Solicitud } from '../models/solicitud.model';
 
 @Component({
   selector: 'app-formulario',
@@ -22,6 +23,8 @@ export class FormularioComponent implements OnInit {
   selectedFiles: FileList;
   filename = '';
   selectedFileName: string = '';
+  buscando:boolean
+  noRadico:string;
 
   constructor(private service: SolicitudesService) {
 
@@ -29,15 +32,16 @@ export class FormularioComponent implements OnInit {
 
   ngOnInit(): void {
     this.solicitud = new SolicitudCreacion();
+    this.solicitud.usuario.us_tu_id=1
     this.creando = false
     this.solicitud.so_es_id = 1
     this.selectedFiles = null;
     this.imagesSrc = [];
+    this.buscando=false
   }
 
   crearSolicitud() {
     this.creando = true
-
     if(this.imagesSrc.length>0){
 
       this.service.crearSolicitud(this.solicitud, this.selectedFiles).subscribe({
@@ -77,6 +81,19 @@ export class FormularioComponent implements OnInit {
   }
 
 
+  buscarSolicitud(){
+    if(this.buscando==false){
+      this.service.getSolicitudPorRadicado(this.noRadico).subscribe({next:response=>{
+        this.solicitud= this.toSolicitudCreacion(response[0]);
+        console.log(response)
+        
+        this.buscando=false
+      },error:error=>{
+        alert("Sucedio un error, por favor vuelva a intentar")
+        this.buscando=false
+      }});
+    }
+  }
 
 
   selectFiles(event) {
@@ -145,4 +162,22 @@ export class FormularioComponent implements OnInit {
     return Math.floor(Math.random() * max);
   }
 
+
+  toSolicitudCreacion(solicitud: Solicitud): SolicitudCreacion {
+    return {
+      so_descripcion: solicitud.so_descripcion,
+      so_ts_id:  5,
+      so_es_id: solicitud.so_es_id,
+      so_so_id: solicitud.so_id,
+      usuario: {
+        us_nombre: solicitud.usuarios.us_nombre,
+        us_apellido: solicitud.usuarios.us_apellido,
+        us_ti_id: solicitud.usuarios.us_ti_id ?? -1,
+        us_identificacion: solicitud.usuarios.us_identificacion,
+        us_telefono: solicitud.usuarios.us_telefono,
+        us_correo: solicitud.usuarios.us_correo,
+        us_tu_id: solicitud.usuarios.us_tu_id
+      }
+    };
+  }
 }

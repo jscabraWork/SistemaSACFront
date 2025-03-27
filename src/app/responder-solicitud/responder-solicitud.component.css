@@ -1,0 +1,16 @@
+ul{
+    display: flex;
+    list-style-type: none;
+    margin-top: 30px;
+    justify-content: space-between;
+}
+
+li{
+    color: gray;
+    cursor: pointer;
+}
+
+.li-select{
+    text-decoration: underline;
+    color: #722B1D;
+}

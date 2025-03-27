@@ -5,6 +5,7 @@ export class UsuarioCreacion {
     us_identificacion: string;
     us_telefono: string;
     us_correo: string;
+    us_tu_id:number;
 }
 
 export class SolicitudCreacion {
@@ -12,4 +13,5 @@ export class SolicitudCreacion {
     so_ts_id: number=-1;
     so_es_id: number;
     usuario: UsuarioCreacion=new UsuarioCreacion();
+    so_so_id?: number;
 }

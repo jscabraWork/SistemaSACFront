@@ -44,6 +44,8 @@ export class ConsultarSolicitudComponent implements OnInit{
       if(this.tipoBusqueda==0){
         this.solicitudService.getSolicitudPorRadicado(this.noRadico).subscribe({next:response=>{
           this.solicitudes= response;
+          console.log(response)
+          
           this.buscando=false
         },error:error=>{
           alert("Sucedio un error, por favor vuelva a intentar")

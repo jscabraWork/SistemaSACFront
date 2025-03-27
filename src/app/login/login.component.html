@@ -1,0 +1,40 @@
+
+
+<section class="flex-centrado">
+    <div class="contenedor-login">
+
+    <div class ="login  contenederoLogin">
+        <div class="fondoBlanco rounded shadow-lg">
+            <div class=" pt-4 pb-4">
+                <h2 class="colorLetras"><strong>Iniciar Sesión</strong></h2>
+                <h5 class="azul"><strong>Ingresa con tu usuario de organizador</strong></h5>
+            </div>
+            <form (ngSubmit)="handleLogin()" class="centrar">
+                <div class="mt-3  form-group">
+
+                    <input type="text" name= "NumeroDeDocumento" class="rounded form-control"  placeholder="Numero De Documento" [(ngModel)]="usuario.col_identificacion" >
+                    <small class="colorLetras">Ingresa con tu numero de documento</small>
+                </div>
+
+
+
+                <div class="mt-3 form-group">
+
+                    <input type="password" name="password" class="rounded form-control" placeholder="Contraseña" [(ngModel)]="usuario.lo_password">
+                </div>
+
+
+
+                <div class="mt-3 mb-3 ">
+                    <small *ngIf ='invalidLogin' class="text-danger" >{{errorMessage}}</small>
+                    <br *ngIf ='invalidLogin'>
+                    <button class="btn botonLogin mt-3 mb-3"  type="submit">Iniciar Sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+</section>
+
+
