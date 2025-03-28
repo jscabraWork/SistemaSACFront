@@ -1,1 +1,56 @@
-<p>reporte works!</p>
+<div class="container">
+    <form class="row" (ngSubmit)="buscarReporte()" #f="ngForm">
+        <div class="col-3">
+            <input type="date" name="fechaInicial" id="" [(ngModel)]="consulta.so_fec_ini" class="form-control"
+                placeholder="Fecha Inicial">
+        </div>
+        <div class="col-3">
+            <input type="date" name="fechaFinal" id="" [(ngModel)]="consulta.so_fec_final" class="form-control"
+                placeholder="Fecha Final">
+        </div>
+        <div class="col-3">
+            <select name="colab" id="colab" [(ngModel)]="consulta.so_col_id" class="form-control">
+                <option value="undefined">Seleccione un Colaborador</option>
+                <option value="1">Jhon</option>
+                <option value="2">Sebastian</option>
+                <option value="3">Diego</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <select name="estado" id="estado" [(ngModel)]="consulta.so_es_id" class="form-control">
+                <option value="undefined">Seleccione un estado</option>
+                <option value="1">Radicado</option>
+                <option value="2">En Proceso</option>
+                <option value="3">Resuelto</option>
+                <option value="4">En Revisión</option>
+                <option value="5">Escalado</option>
+
+            </select>
+        </div>
+        <div class="col-3">
+            <button type="submit">Buscar</button>
+        </div>
+    </form>
+    <div class="row mt-4">
+        <div class="col-12">
+            <h4>Reporte: </h4>
+            <ul>
+                <li><strong>Cantidad total de solicitudes:</strong> {{ cantidadTotalEstados }}</li>
+                <li><strong>Cantidad de colaboradores:</strong> {{ cantidadColaboradores }}</li>
+                <li><strong>Colaborador con más casos:</strong> {{ colaboradorMasCasos !== null ? colaboradorMasCasos : 'Sin asignar' }}</li>
+                <li><strong>Colaborador con menos casos:</strong> {{ colaboradorMenosCasos !== null ? colaboradorMenosCasos : 'Sin asignar' }}</li>
+                <li><strong>Colaborador con más casos por resolver:</strong> {{ colaboradorMasPorResolver !== null ? colaboradorMasPorResolver : 'Sin asignar' }}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-4 col-12">
+            <h4>Estado de solicitudes general</h4>
+            <canvas #chartEstados></canvas>
+        </div>
+        <div class="col-md-8 col-12">
+            <h4>Solicitudes por Colaborador</h4>
+            <canvas #chartColaboradores></canvas>
+        </div>
+    </div>
+</div>
