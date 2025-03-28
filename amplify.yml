@@ -10,7 +10,7 @@ frontend:
       commands:
         - npm run build  # Asegúrate de que este comando genera los archivos en 'dist/'
   artifacts:
-    baseDirectory: dist  # Cambia esto si tu proyecto genera archivos en otro directorio
+    baseDirectory: dist/sac-sistem-front/browser  # Cambia esto si tu proyecto genera archivos en otro directorio
     files:
       - '**/*'
   cache:
