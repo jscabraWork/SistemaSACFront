@@ -6,3 +6,13 @@ frontend:
         - nvm install 18.19.1
         - nvm use 18.19.1
         - npm ci --cache .npm --prefer-offline
+    build:
+      commands:
+        - npm run build  # Asegúrate de que este comando genera los archivos en 'dist/'
+  artifacts:
+    baseDirectory: dist  # Cambia esto si tu proyecto genera archivos en otro directorio
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
