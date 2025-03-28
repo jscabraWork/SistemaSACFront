@@ -17,6 +17,10 @@
           </li>
 
           <li class="nav-item active">
+            <a class="nav-link" routerLink="reporte" routerLinkActive="nat-item-active" *ngIf="auth.getAgenteId() && auth.getLiderId()==null">Reporte</a>
+          </li>
+
+          <li class="nav-item active">
             <a class="nav-link" routerLink="login" routerLinkActive="nat-item-active" *ngIf="!auth.getAgenteId()">Login</a>
           </li>
       </ul>

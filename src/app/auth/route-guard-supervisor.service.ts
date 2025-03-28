@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import {  ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
+
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RouteGuardService {
-
+export class RouteGuardSupervisorService {
   constructor(private autenticador: AuthService, private router: Router) { }
   
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    if(this.autenticador.getAgenteId()  ){
+    if(this.autenticador.getAgenteId() && this.autenticador.getLiderId()==null ){
       return true;
     }
     else{

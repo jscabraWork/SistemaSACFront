@@ -4,6 +4,8 @@ import { ConsultarSolicitudComponent } from './consultar-solicitud/consultar-sol
 import { ResponderSolicitudComponent } from './responder-solicitud/responder-solicitud.component';
 import { LoginComponent } from './login/login.component';
 import { RouteGuardService } from './auth/route-guard.service';
+import { ReporteComponent } from './reporte/reporte.component';
+import { RouteGuardSupervisorService } from './auth/route-guard-supervisor.service';
 
 export const routes: Routes = [
     {
@@ -18,6 +20,12 @@ export const routes: Routes = [
         path:'responder',
         component:ResponderSolicitudComponent,
         canActivate:[RouteGuardService]
+        
+    },
+    {
+        path:'reporte',
+        component:ReporteComponent,
+        canActivate:[RouteGuardSupervisorService]
         
     },
     {
